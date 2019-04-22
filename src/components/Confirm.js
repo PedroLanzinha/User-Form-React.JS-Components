@@ -11,35 +11,46 @@ export class Confirm extends Component {
         this.props.nextStep();
     };
 
+    back = e => {
+        e.preventDefault();
+        this.props.prevstep();
+    };
+
   render() {
-      const { values, handleChange} = this.props;
+      const { values: {firstName, lastName, email,
+    occupation, city, bio} } = this.props;
     return (
       <MuiThemeProvider>
         <React.Fragment>
-            <AppBar title = "Enter Personal Details" />
-            <TextField 
-                hintText = "Enter Your Occupation"
-                floatingLabelText = "First Name"
-                onChange = {handleChange('occupation')}
-                defaultValue = {values.occupation}
-            />
-            <br/>
-            <TextField 
-                hintText = "Enter Your City"
-                floatingLabelText = "City"
-                onChange = {handleChange('city')}
-                defaultValue = {values.city}
-            />
-            <br/>
-            <TextField 
-                hintText = "Enter Your Bio"
-                floatingLabelText = "Bio"
-                onChange = {handleChange('bio')}
-                defaultValue = {values.bio}
-            />
-            <br/>
+            <AppBar title = "Confirm User Details" />
+            <List>
+                <ListItem
+                    primaryText="First Name"
+                    secondaryText={firstName}
+                />
+                <ListItem
+                    primaryText="Last Name"
+                    secondaryText={lastName}
+                />
+                <ListItem
+                    primaryText="Email"
+                    secondaryText={email}
+                />
+                <ListItem
+                    primaryText="Occupation"
+                    secondaryText={occupation}
+                />
+                <ListItem
+                    primaryText="City"
+                    secondaryText={city}
+                />
+                <ListItem
+                    primaryText="Bio"
+                    secondaryText={bio}
+                />
+            </List>
             <RaisedButton 
-            label = "Continue"
+            label = "Confirm & Continue"
             primary = {true}
             style={styles.button}
             onclick = {this.continue}
